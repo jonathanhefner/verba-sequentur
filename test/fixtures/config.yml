@@ -1,0 +1,7 @@
+foo:
+  comment: >
+    This is the foo label's canned response.
+
+bar:
+  comment: >
+    This is the bar label's canned response.

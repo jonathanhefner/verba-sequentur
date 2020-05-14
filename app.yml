@@ -64,6 +64,10 @@ default_permissions:
   # https://developer.github.com/v3/apps/permissions/#permission-on-contents
   # contents: read
 
+  # Manage just a single file.
+  # https://developer.github.com/v3/apps/permissions/#permission-on-single-file
+  single_file: read
+
   # Deployments and deployment statuses.
   # https://developer.github.com/v3/apps/permissions/#permission-on-deployments
   # deployments: read
@@ -124,6 +128,7 @@ default_permissions:
   # https://developer.github.com/v3/apps/permissions/
   # organization_administration: read
 
+singe_file_name: .github/verba-sequentur.yml
 
 # The name of the GitHub App. Defaults to the name specified in package.json
 # name: My Probot App
