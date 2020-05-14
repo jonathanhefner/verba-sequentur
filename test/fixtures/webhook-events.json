@@ -1,0 +1,39 @@
+{
+  "issue labeled foo": {
+    "name": "issues",
+    "payload": {
+      "action": "labeled",
+      "issue": {
+        "number": 1
+      },
+      "label": {
+        "name": "foo"
+      },
+      "repository": {
+        "name": "testing-things",
+        "owner": {
+          "login": "jonathanhefner"
+        }
+      }
+    }
+  },
+
+  "pull request labeled foo": {
+    "name": "pull_request",
+    "payload": {
+      "action": "labeled",
+      "pull_request": {
+        "number": 1
+      },
+      "label": {
+        "name": "foo"
+      },
+      "repository": {
+        "name": "testing-things",
+        "owner": {
+          "login": "jonathanhefner"
+        }
+      }
+    }
+  }
+}
