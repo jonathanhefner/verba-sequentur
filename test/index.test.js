@@ -22,10 +22,6 @@ describe("verba-sequentur", () => {
 
   test("creates a comment when an issue is opened", async () => {
     nock("https://api.github.com")
-      .post("/app/installations/2/access_tokens")
-      .reply(200, { token: "test" })
-
-    nock("https://api.github.com")
       .post("/repos/jonathanhefner/testing-things/issues/1/comments", (body) => {
         expect(body).toMatchObject(issueCreatedBody)
         return true
