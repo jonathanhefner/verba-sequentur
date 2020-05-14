@@ -1,12 +1,12 @@
 const nock = require("nock")
-const myProbotApp = require("..")
+const appFn = require("..")
 const { Probot } = require("probot")
 const payload = require("./fixtures/issues.opened")
 const issueCreatedBody = { body: "Thanks for opening this issue!" }
 const fs = require("fs")
 const path = require("path")
 
-describe("My Probot app", () => {
+describe("verba-sequentur", () => {
   let probot
   let mockCert
 
@@ -21,7 +21,7 @@ describe("My Probot app", () => {
   beforeEach(() => {
     nock.disableNetConnect()
     probot = new Probot({ id: 123, cert: mockCert })
-    probot.load(myProbotApp)
+    probot.load(appFn)
   })
 
   test("creates a comment when an issue is opened", async () => {
