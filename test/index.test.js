@@ -1,5 +1,5 @@
 const nock = require("nock")
-const fs = require("fs")
+const fs = require("fs").promises
 const path = require("path")
 const { Probot } = require("probot")
 const appFn = require("..")
@@ -10,12 +10,8 @@ describe("verba-sequentur", () => {
   let probot
   let mockCert
 
-  beforeAll((done) => {
-    fs.readFile(path.join(__dirname, "fixtures/mock-cert.pem"), (err, cert) => {
-      if (err) return done(err)
-      mockCert = cert
-      done()
-    })
+  beforeAll(async () => {
+    mockCert = await fs.readFile(path.join(__dirname, "fixtures/mock-cert.pem"))
   })
 
   beforeEach(() => {
