@@ -1,10 +1,10 @@
 const nock = require("nock")
-const appFn = require("..")
-const { Probot } = require("probot")
-const payload = require("./fixtures/issues.opened")
-const issueCreatedBody = { body: "Thanks for opening this issue!" }
 const fs = require("fs")
 const path = require("path")
+const { Probot } = require("probot")
+const appFn = require("..")
+const payload = require("./fixtures/issues.opened")
+const issueCreatedBody = { body: "Thanks for opening this issue!" }
 
 describe("verba-sequentur", () => {
   let probot
