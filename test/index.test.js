@@ -1,19 +1,19 @@
-const nock = require('nock')
+const nock = require("nock")
 // Requiring our app implementation
-const myProbotApp = require('..')
-const { Probot } = require('probot')
+const myProbotApp = require("..")
+const { Probot } = require("probot")
 // Requiring our fixtures
-const payload = require('./fixtures/issues.opened')
-const issueCreatedBody = { body: 'Thanks for opening this issue!' }
-const fs = require('fs')
-const path = require('path')
+const payload = require("./fixtures/issues.opened")
+const issueCreatedBody = { body: "Thanks for opening this issue!" }
+const fs = require("fs")
+const path = require("path")
 
-describe('My Probot app', () => {
+describe("My Probot app", () => {
   let probot
   let mockCert
 
   beforeAll((done) => {
-    fs.readFile(path.join(__dirname, 'fixtures/mock-cert.pem'), (err, cert) => {
+    fs.readFile(path.join(__dirname, "fixtures/mock-cert.pem"), (err, cert) => {
       if (err) return done(err)
       mockCert = cert
       done()
@@ -27,22 +27,22 @@ describe('My Probot app', () => {
     probot.load(myProbotApp)
   })
 
-  test('creates a comment when an issue is opened', async () => {
+  test("creates a comment when an issue is opened", async () => {
     // Test that we correctly return a test token
-    nock('https://api.github.com')
-      .post('/app/installations/2/access_tokens')
-      .reply(200, { token: 'test' })
+    nock("https://api.github.com")
+      .post("/app/installations/2/access_tokens")
+      .reply(200, { token: "test" })
 
     // Test that a comment is posted
-    nock('https://api.github.com')
-      .post('/repos/jonathanhefner/testing-things/issues/1/comments', (body) => {
+    nock("https://api.github.com")
+      .post("/repos/jonathanhefner/testing-things/issues/1/comments", (body) => {
         expect(body).toMatchObject(issueCreatedBody)
         return true
       })
       .reply(200)
 
     // Receive a webhook event
-    await probot.receive({ name: 'issues', payload })
+    await probot.receive({ name: "issues", payload })
   })
 
   afterEach(() => {
