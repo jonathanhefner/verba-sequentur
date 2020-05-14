@@ -3,7 +3,7 @@ const fs = require("fs").promises
 const path = require("path")
 const { Probot } = require("probot")
 const appFn = require("..")
-const payload = require("./fixtures/issues.opened")
+const payload = require("./fixtures/issues.labeled")
 
 describe("verba-sequentur", () => {
   let probot
@@ -19,11 +19,12 @@ describe("verba-sequentur", () => {
     probot.load(appFn)
   })
 
-  test("creates a comment when an issue is opened", async () => {
+  test("creates a comment when an issue is labeled", async () => {
+    const label = payload.label.name
+    expect(label).toBeTruthy() // sanity check
+
     nock("https://api.github.com")
-      .post("/repos/jonathanhefner/testing-things/issues/1/comments", ({ body }) =>
-        body == "Thanks for opening this issue!"
-      )
+      .post("/repos/jonathanhefner/testing-things/issues/1/comments", ({ body }) => body == label)
       .reply(200)
 
     await probot.receive({ name: "issues", payload })

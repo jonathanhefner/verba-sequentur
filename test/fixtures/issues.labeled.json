@@ -1,10 +1,10 @@
 {
-  "action": "opened",
+  "action": "labeled",
   "issue": {
-    "number": 1,
-    "user": {
-      "login": "jonathanhefner"
-    }
+    "number": 1
+  },
+  "label": {
+    "name": "foo"
   },
   "repository": {
     "name": "testing-things",
