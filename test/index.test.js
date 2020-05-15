@@ -62,6 +62,16 @@ describe("verba-sequentur", () => {
     expect(nock.isDone()).toBe(true)
   })
 
+  test.each([
+    "closed issue labeled foo",
+    "closed pull request labeled foo"
+  ])("ignores %s", async (scenario) => {
+    nock.cleanAll() // should not fetch anything else
+    const event = webhookEvents[scenario]
+    await probot.receive(event)
+    expect(nock.isDone()).toBe(true)
+  })
+
   afterEach(() => {
     nock.cleanAll()
     nock.enableNetConnect()

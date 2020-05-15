@@ -3,6 +3,11 @@
  */
 module.exports = app => {
   app.on(["issues.labeled", "pull_request.labeled"], async context => {
+    const issue = context.payload.issue || context.payload.pull_request
+    if (issue.state == "closed") {
+      return
+    }
+
     const config = await context.config("verba-sequentur.yml", {})
     const label = context.payload.label.name
     const cannedResponse = config[label]
