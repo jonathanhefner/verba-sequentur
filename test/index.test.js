@@ -64,7 +64,9 @@ describe("verba-sequentur", () => {
 
   test.each([
     "closed issue labeled foo",
-    "closed pull request labeled foo"
+    "closed pull request labeled foo",
+    "locked issue labeled foo",
+    "locked pull request labeled foo"
   ])("ignores %s", async (scenario) => {
     nock.cleanAll() // should not fetch anything else
     const event = webhookEvents[scenario]

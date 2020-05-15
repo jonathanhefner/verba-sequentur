@@ -189,5 +189,45 @@
         }
       }
     }
+  },
+
+  "locked issue labeled foo": {
+    "name": "issues",
+    "payload": {
+      "action": "labeled",
+      "issue": {
+        "number": 1,
+        "locked": true
+      },
+      "label": {
+        "name": "foo"
+      },
+      "repository": {
+        "name": "testing-things",
+        "owner": {
+          "login": "jonathanhefner"
+        }
+      }
+    }
+  },
+
+  "locked pull request labeled foo": {
+    "name": "pull_request",
+    "payload": {
+      "action": "labeled",
+      "pull_request": {
+        "number": 1,
+        "locked": true
+      },
+      "label": {
+        "name": "foo"
+      },
+      "repository": {
+        "name": "testing-things",
+        "owner": {
+          "login": "jonathanhefner"
+        }
+      }
+    }
   }
 }

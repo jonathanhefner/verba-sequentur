@@ -4,7 +4,7 @@
 module.exports = app => {
   app.on(["issues.labeled", "pull_request.labeled"], async context => {
     const issue = context.payload.issue || context.payload.pull_request
-    if (issue.state == "closed") {
+    if (issue.state == "closed" || issue.locked) {
       return
     }
 
