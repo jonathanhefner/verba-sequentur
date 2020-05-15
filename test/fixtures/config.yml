@@ -5,3 +5,7 @@ foo:
 bar:
   comment: >
     This is the bar label's canned response.
+  close: true
+
+baz:
+  close: true

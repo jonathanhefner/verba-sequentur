@@ -34,15 +34,20 @@ describe("verba-sequentur", () => {
     "issue labeled foo",
     "pull request labeled foo",
     "issue labeled bar",
-    "pull request labeled bar"
+    "pull request labeled bar",
+    "issue labeled baz",
+    "pull request labeled baz"
   ])("handles %s", async (scenario) => {
     const event = webhookEvents[scenario]
     const label = event.payload.label.name
     const comment = config[label].comment
+    const close = config[label].close
 
     nock("https://api.github.com")
       .post(`${repoUrlPath}/issues/1/comments`, ({ body }) => body == comment)
-      .reply(200)
+      .optionally(!comment).reply(200)
+      .patch(`${repoUrlPath}/issues/1`, ({ state }) => state == "closed")
+      .optionally(!close).reply(200)
 
     await probot.receive(event)
     expect(nock.isDone()).toBe(true)
