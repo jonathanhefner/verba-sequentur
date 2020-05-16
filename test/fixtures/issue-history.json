@@ -1,0 +1,19 @@
+[
+  [
+    {
+      "event": "labeled",
+      "label": {
+        "name": "foo"
+      }
+    }
+  ],
+
+  [
+    {
+      "event": "unlabeled",
+      "label": {
+        "name": "qux"
+      }
+    }
+  ]
+]

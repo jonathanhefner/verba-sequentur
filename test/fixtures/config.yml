@@ -9,3 +9,6 @@ bar:
 
 baz:
   close: true
+
+qux:
+  close: true

@@ -8,8 +8,16 @@ module.exports = app => {
       return
     }
 
-    const config = await context.config("verba-sequentur.yml", {})
     const label = context.payload.label.name
+
+    const listEvents = context.github.issues.listEvents.endpoint.merge(context.issue())
+    for await (const { data: page } of context.github.paginate.iterator(listEvents)) {
+      if (page.some(item => item.event == "unlabeled" && item.label.name == label)) {
+        return
+      }
+    }
+
+    const config = await context.config("verba-sequentur.yml", {})
     const cannedResponse = config[label]
 
     if (cannedResponse && cannedResponse.comment) {
